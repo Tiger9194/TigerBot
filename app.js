@@ -63,5 +63,6 @@ console.log(`[Command] Dice command ran`)
 console.log(`[Command] Dice command ran with an error. The error ${error}`);
 }
 }
+}
 });
 client.login("Token");
