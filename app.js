@@ -14,10 +14,7 @@ client.on('message', async message => {
       message.channel.send('Oops! I couldnt find that command');
       break;
     case '!ping':
-
-      message.channel.send('🕒 Calculating Ping..').then(msg => {
-        msg.edit(`🏓 Pong! Your ping is ${Math.round(client.ping)}ms`);
-      });
+      message.channel.send(`🏓 Pong! Your ping is ${Math.round(client.ping)}ms`)
       break;
     case '!kick':
       if (!message.member.hasPermission('KICK_MEMBERS')) return message.reply(':warning: Missing permissions. Permission required to kick: Kick Members.');
@@ -44,28 +41,51 @@ client.on('message', async message => {
       break;
 
       case '!help':
-message.channel.send(`
-:gear: Tiger Mod Commands
-!ping Client ping
-!kick [user] [reason] Kicks a user with reason
-!ban [user] [reason] Bans a user with reason
-!roll Randomly rolls a dice
-!Help Brings up this command menu
-
-Credits go to: FDD, Michael, Server Lion, Petabyte Amazing, FairPlayTTS, TheEdge, Tech-A-Tech, & jtsshieh
-`)
-break;
+        var help = new Discord.RichEmbed()
+          .setTitle('Tiger Bot Help')
+          .setDescription('These are the commands you can use. My prefix is `!`')
+          .addField('Core', 'ping\nhelp\ncredits\nsyntax', true)
+          .addField('Moderation', 'kick\nban', true)
+          .addField('Fun', 'roll', true)
+         
+        message.channel.send(help);
+       break;
+      case '!credits`:
+        message.channel.send(`
+        *Credits*
+        FloppyDiskDrive
+        Michael
+        ServerLion
+        PetabyteAmazing
+        FairPlayTTS
+        TheEdge
+        Tech-A-Tech
+        jtsshieh
+        `);
+      break;
+    case '!syntax':
+      message.channel.send(`
+      :gear: Tiger Mod Syntax
+      !ping - Client ping
+      !kick [user] [reason] - Kicks a user with reason
+      !ban [user] [reason] - Bans a user with reason
+      !roll - Randomly rolls a dice
+      !help - Brings up an embed board with a command list
+      !credits - Displays the credits
+      !syntax - Displays this board of command syntax
+      `)
+      break;
 
 case '!roll':
-if(message.content.startsWith('!'+ 'roll')){
-try {
-number = Math.floor((Math.random() * 6) + 1);
-message.channel.send(`You rolled a ${number}! :game_die:`)
-console.log(`[Command] Dice command ran`)
-} catch (error) {
-console.log(`[Command] Dice command ran with an error. The error ${error}`);
-}
-}
+  if(message.content.startsWith('!'+ 'roll')){
+    try {
+      number = Math.floor((Math.random() * 6) + 1);
+      message.channel.send(`You rolled a ${number}! :game_die:`)
+      console.log(`[Command] Dice command ran`)
+    } catch (error) {
+      console.log(`[Command] Dice command ran with an error. The error ${error}`);
+    }
+  }
 }
 
 client.on("message", function(message) {
@@ -90,8 +110,8 @@ try {
     }
   }
 catch(error)
-{
-console.log(`[Command] Say command ran with an error. `);
+  {
+  console.log(`[Command] Say command ran with an error. `);
 }
 });
 });
