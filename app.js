@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('message', async message => {
-  if (message.author.bot) return;
+  if (message.author.bot) return
+  const prefix  = '!'
   const array = message.content.split(' ');
   const command = array[0];
   const args = array.slice(1);
@@ -44,12 +45,14 @@ client.on('message', async message => {
 
       case '!help':
 message.channel.send(`
-Tiger Mod Commands
+:gear: Tiger Mod Commands
 !ping Client ping
 !kick [user] [reason] Kicks a user with reason
 !ban [user] [reason] Bans a user with reason
 !roll Randomly rolls a dice
 !Help Brings up this command menu
+
+Credits go to: FDD, Michael, Server Lion, Petabyte Amazing, FairPlayTTS, TheEdge, Tech-A-Tech, & jtsshieh
 `)
 break;
 
@@ -64,5 +67,32 @@ console.log(`[Command] Dice command ran with an error. The error ${error}`);
 }
 }
 }
+
+client.on("message", function(message) {
+
+    if (!message.guild) return
+
+    if (message.author.equals(client.user)) return;
+
+    if (!message.content.startsWith('!')) return;
+
+    var args = message.content.substring(prefix.length).split(" ");
+    var result = args.join(' ');
+
+
+try {
+    if(args[0] === 'say')
+    {
+        if (message.author.bot) return;
+        if (message.content.includes("@everyone") || message.content.includes("@here")) return;
+        var msg = message.content.substr(4)
+        message.channel.send(msg)
+    }
+  }
+catch(error)
+{
+console.log(`[Command] Say command ran with an error. `);
+}
 });
-client.login("Token");
+});
+client.login('T O K E N  G O E S  H E R E');
