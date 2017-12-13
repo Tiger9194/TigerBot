@@ -50,7 +50,7 @@ client.on('message', async message => {
          
         message.channel.send(help);
        break;
-      case '!credits`:
+      case '!credits':
         message.channel.send(`
         *Credits*
         FloppyDiskDrive
